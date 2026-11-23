@@ -23,6 +23,7 @@
   <meta name="twitter:image" content="https://grigory9030.github.io/assets/img/og-preview.png">
   <script src="theme.js"></script>
   <link rel="stylesheet" href="styles.css">
+  <script src="motion.js" defer></script>
   <script src="tracker.js" defer></script>
 </head>
 <body class="tracker">
@@ -93,11 +94,12 @@
       <label>Целевой KPI<input name="kpiTarget" maxlength="250" required></label>
       <label class="wide">Заметка<textarea name="note" rows="2" maxlength="5000"></textarea></label>
     </div>
-    <div class="dialog-actions"><button type="button" data-close>Отмена</button><button class="save-btn">Добавить задачу</button></div>
+    <div class="dialog-actions"><button type="button" data-close>Отмена</button><button type="submit" class="save-btn" id="save-task">Добавить задачу</button></div>
     <datalist id="branch-list"></datalist><datalist id="owner-list"></datalist>
   </form>
 </dialog>
 <dialog class="launch-dialog reset-dialog" id="reset-dialog" aria-labelledby="reset-title"><h2 id="reset-title">Сбросить демо?</h2><p>Вернутся 12 исходных задач и 3 отметки чек-листа. Добавленные задачи и правки будут удалены из этого браузера.</p><div class="dialog-actions"><button data-close autofocus>Отмена</button><button id="confirm-reset" class="save-btn">Сбросить демо</button></div></dialog>
+<div id="status-options" class="status-popup" role="listbox" aria-label="Статус задачи" hidden></div>
 <div id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

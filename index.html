@@ -23,9 +23,17 @@
   <meta name="twitter:image" content="https://grigory9030.github.io/assets/img/og-preview.png">
   <script src="theme.js"></script>
   <link rel="stylesheet" href="styles.css">
+  <script src="motion.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
+<svg class="jelly-filter" width="0" height="0" aria-hidden="true">
+  <filter id="jelly-goo" x="-35%" y="-25%" width="170%" height="150%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/>
+    <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -10" result="goo"/>
+    <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+  </filter>
+</svg>
 <a class="skip" href="#tools">К инструментам</a>
 <main class="page">
   <section class="panel hero" aria-labelledby="name" id="top">
