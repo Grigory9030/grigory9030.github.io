@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
+  <link rel="preload" as="image" href="assets/img/photo.webp" type="image/webp" fetchpriority="high">
   <title>Григорий Корепанов — аналитика продаж, маркетинг, проекты и ИИ</title>
   <meta name="description" content="Портфолио с интерактивными инструментами: BI-дашборд Yandex DataLens, калькулятор экономики промо, демо-пульт запусков сети и кейсы в цифрах.">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
@@ -22,7 +23,7 @@
   <meta name="twitter:description" content="Портфолио с интерактивными инструментами: BI-дашборд Yandex DataLens, калькулятор экономики промо, демо-пульт запусков сети и кейсы в цифрах.">
   <meta name="twitter:image" content="https://grigory9030.github.io/assets/img/og-preview.png">
   <script src="theme.js?v=2"></script>
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=3">
   <script src="motion.js" defer></script>
   <script src="app.js?v=2" defer></script>
 </head>
@@ -56,7 +57,12 @@
         <div class="buttons"><a class="btn bright" href="#tools">Открыть инструменты ↗</a><a class="btn outline" href="#contacts">Связаться</a></div>
         <ul class="facts" aria-label="Краткие факты"><li>30+ ресторанов</li><li>13 лет в HoReCa</li><li>Английский C1</li><li>Сочи</li><li>Сириус</li><li>Удаленно</li></ul>
       </div>
-      <div class="portrait-frame"><img class="portrait" src="assets/img/photo.png" width="1086" height="1448" alt="Григорий Корепанов"></div>
+      <div class="portrait-frame">
+        <picture>
+          <source srcset="assets/img/photo.webp" type="image/webp">
+          <img class="portrait" src="assets/img/photo.jpg" width="800" height="1067" loading="eager" fetchpriority="high" decoding="async" alt="Григорий Корепанов">
+        </picture>
+      </div>
     </div>
   </section>
 
@@ -64,7 +70,13 @@
     <h2 id="tools-title">Инструменты и артефакты</h2>
     <div class="tools-grid">
       <article class="tool">
-        <a class="preview dashboard" id="show-dashboard" href="assets/img/datalens-preview.png" aria-label="Увеличить скриншот дашборда DataLens"><img src="assets/img/datalens-preview.png" alt="" width="1424" height="1226"><span class="enlarge" aria-hidden="true">⤢</span></a>
+        <a class="preview dashboard" id="show-dashboard" href="assets/img/datalens-preview.png" aria-label="Увеличить скриншот дашборда DataLens">
+          <picture>
+            <source srcset="assets/img/datalens-preview.webp" type="image/webp">
+            <img src="assets/img/datalens-preview.png" alt="" width="1424" height="1226" loading="lazy" decoding="async" fetchpriority="low">
+          </picture>
+          <span class="enlarge" aria-hidden="true">⤢</span>
+        </a>
         <span class="index">01</span><h3>BI DataLens</h3>
         <p>Интерактивный дашборд контроля допродаж и среднего чека ресторанной сети (демо-данные). Расчетные метрики, рейтинги точек и фильтры.</p>
         <a class="tool-link" href="https://datalens.yandex/4i9kp7n8df4an?_share_link=public" target="_blank" rel="noopener">Открыть в DataLens ↗</a>
@@ -210,6 +222,14 @@
 <button class="back-to-top" type="button" aria-label="Вернуться наверх" inert>
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5m-5 5 5-5 5 5"/></svg>
 </button>
-<dialog id="lightbox" aria-label="Дашборд аналитики допродаж"><div class="viewer-head"><strong>BI DataLens</strong><div><button type="button" id="zoom" aria-pressed="false">Увеличить</button><button type="button" id="close-viewer" aria-label="Закрыть просмотр">Закрыть ×</button></div></div><div class="image-stage"><img src="assets/img/datalens-preview.png" alt="Дашборд по четырем ресторанам: выручка, средний чек, доля допродаж и рейтинг кассиров" width="1424" height="1226"></div></dialog>
+<dialog id="lightbox" aria-label="Дашборд аналитики допродаж">
+  <div class="viewer-head"><strong>BI DataLens</strong><div><button type="button" id="zoom" aria-pressed="false">Увеличить</button><button type="button" id="close-viewer" aria-label="Закрыть просмотр">Закрыть ×</button></div></div>
+  <div class="image-stage">
+    <picture>
+      <source srcset="assets/img/datalens-preview.webp" type="image/webp">
+      <img src="assets/img/datalens-preview.png" alt="Дашборд по четырем ресторанам: выручка, средний чек, доля допродаж и рейтинг кассиров" width="1424" height="1226" loading="lazy" decoding="async">
+    </picture>
+  </div>
+</dialog>
 </body>
 </html>
