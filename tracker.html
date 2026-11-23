@@ -21,8 +21,8 @@
   <meta name="twitter:title" content="Пульт управления запусками сети — демо | Григорий Корепанов">
   <meta name="twitter:description" content="Интерактивный реестр маркетинговых запусков сети из 24 ресторанов: задачи, бюджеты, статусы и чек-лист подготовки акции.">
   <meta name="twitter:image" content="https://grigory9030.github.io/assets/img/og-preview.png">
-  <script src="theme.js"></script>
-  <link rel="stylesheet" href="styles.css">
+  <script src="theme.js?v=2"></script>
+  <link rel="stylesheet" href="styles.css?v=2">
   <script src="motion.js" defer></script>
   <script src="tracker.js" defer></script>
 </head>
@@ -33,7 +33,7 @@
     <div class="launch-top"><a href="./index.html" data-theme-link>← На главную</a><span class="demo-stamp">ДЕМО-ПРОТОТИП · В работе: Google Sheets + Apps Script</span>
       <button class="theme-toggle" type="button" aria-label="Темная тема" aria-pressed="false" title="Переключить тему"><span aria-hidden="true">☀</span><span aria-hidden="true">☾</span></button>
     </div>
-    <div class="launch-hero"><div><h1>Пульт управления<br>запусками сети <small>(демо)</small></h1><p>Условная сеть из 24 ресторанов · Изменения сохраняются в вашем браузере (localStorage)</p></div>
+    <div class="launch-hero"><div><h1 tabindex="-1">Пульт управления<br>запусками сети <small>(демо)</small></h1><p>Условная сеть из 24 ресторанов · Изменения сохраняются в вашем браузере (localStorage)</p></div>
       <div class="launch-actions"><button class="primary" id="add-task">+ Добавить задачу</button><button id="reset-demo">Сбросить демо</button><button id="csv">CSV</button><button id="markdown">Markdown</button></div>
     </div>
   </header>
@@ -79,6 +79,9 @@
       <label>Заметка<textarea id="edit-note" rows="4" maxlength="5000"></textarea></label></div>
   </section>
 </main>
+<button class="back-to-top" type="button" aria-label="Вернуться наверх" inert>
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5m-5 5 5-5 5 5"/></svg>
+</button>
 
 <dialog class="launch-dialog" id="add-dialog" aria-labelledby="add-title">
   <form id="add-form">

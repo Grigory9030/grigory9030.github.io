@@ -35,6 +35,21 @@
     document.querySelector('.theme-toggle').addEventListener('click', () => {
       saveTheme(root.dataset.theme === 'dark' ? 'light' : 'dark');
     });
+    const backToTop = document.querySelector('.back-to-top');
+    if (!backToTop) return;
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    function syncBackToTop() {
+      const visible = window.scrollY >= 360;
+      backToTop.classList.toggle('is-visible', visible);
+      backToTop.inert = !visible;
+    }
+    backToTop.addEventListener('click', () => {
+      document.querySelector('main h1').focus({preventScroll:true});
+      window.scrollTo({top:0, behavior:reducedMotion.matches ? 'auto' : 'smooth'});
+    });
+    window.addEventListener('scroll', syncBackToTop, {passive:true});
+    window.addEventListener('pageshow', syncBackToTop);
+    syncBackToTop();
   });
   window.addEventListener('storage', event => {
     if (event.key === key) paint(event.newValue);

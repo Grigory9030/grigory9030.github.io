@@ -8,6 +8,7 @@
   --bg:#d4dbe1; --surface:#fff; --line:#e2e7ec; --ink:#14191d; --muted:#5a6672;
   --inset:#f2f5f6; --strong:#171e22; --reverse:#fff; --grid:rgb(63 78 90 / .045);
   --on-dark:#f2f5f7; --muted-dark:#bdc8cf; --line-dark:#374146; --title:Unbounded,Arial,sans-serif;
+  --corner-offset:24px; --back-to-top-size:44px;
   font-family:Inter,Arial,sans-serif; font-variant-numeric:tabular-nums;
 }
 :root[data-theme="dark"] {
@@ -28,6 +29,36 @@ button:focus-visible,a:focus-visible,input:focus-visible,article:focus-visible {
 [hidden] { display:none !important; }
 .skip { position:fixed; top:-80px; left:16px; z-index:10; background:white; color:black; padding:12px; }
 .skip:focus { top:8px; }
+.back-to-top {
+  position:fixed;
+  z-index:6;
+  right:var(--corner-offset);
+  bottom:var(--corner-offset);
+  display:grid;
+  place-items:center;
+  width:var(--back-to-top-size);
+  height:var(--back-to-top-size);
+  padding:0;
+  border:1px solid #64727c;
+  border-radius:12px;
+  background:var(--surface);
+  color:var(--ink);
+  box-shadow:0 3px 14px rgb(12 22 28 / .24);
+  visibility:hidden;
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(8px);
+  transition:opacity .2s ease, transform .2s ease, visibility 0s .2s;
+}
+.back-to-top.is-visible { visibility:visible; opacity:1; pointer-events:auto; transform:none; transition-delay:0s; }
+.back-to-top svg { transition:transform .18s ease; }
+.back-to-top:hover svg { transform:translateY(-2px); }
+:root[data-theme="dark"] .back-to-top { border-color:#36444d; }
+@media (max-width:640px) { :root { --corner-offset:16px; } }
+@media (prefers-reduced-motion:reduce) {
+  .back-to-top,.back-to-top svg { transition:none; }
+  .back-to-top:hover svg { transform:none; }
+}
 .page { width:min(calc(100% - 64px),1280px); margin:28px auto; display:grid; gap:24px; }
 .panel { border-radius:16px; border:1px solid var(--line); background:var(--surface); min-width:0; box-shadow:0 7px 23px -18px rgb(16 28 36 / .32); }
 .pad { padding:clamp(24px,3.3vw,48px); }
@@ -327,7 +358,7 @@ body:has(.launch-dialog[open]) { overflow:hidden; }
 .modal-fields .wide { grid-column:1/-1; }
 .reset-dialog { max-width:440px; }
 .reset-dialog p { margin:12px 0; color:var(--muted); }
-#toast { position:fixed; z-index:5; right:18px; bottom:18px; max-width:calc(100% - 36px); color:var(--reverse); background:var(--strong); padding:10px 16px; font-size:.9rem; border-radius:6px; opacity:0; pointer-events:none; }
+#toast { position:fixed; z-index:5; right:var(--corner-offset); bottom:calc(var(--corner-offset) + var(--back-to-top-size) + 10px); max-width:calc(100% - 2 * var(--corner-offset)); color:var(--reverse); background:var(--strong); padding:10px 16px; font-size:.9rem; border-radius:6px; opacity:0; pointer-events:none; }
 #toast.show { opacity:1; }
 .clipboard-fallback { position:fixed; top:0; left:-9999px; }
 @media(max-width:900px) {

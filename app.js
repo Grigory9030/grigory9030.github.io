@@ -134,12 +134,14 @@ tabs.forEach((tab, index) => {
 
 const presets = {
   dish: {base:120, cost:30, promo:69, volume:36, budget:0},
-  set: {base:1200, cost:240, promo:900, volume:20, budget:0}
+  set: {base:1200, cost:240, promo:900, volume:20, budget:0},
+  coupon: {base:1000, cost:250, promo:850, volume:40, budget:36000}
 };
 const presetButtons = [...document.querySelectorAll('[data-preset]')];
 const sliders = [...document.querySelectorAll('[data-field]')];
 const numberFields = Object.fromEntries(sliders.map(slider => [slider.dataset.field, document.getElementById(slider.dataset.field)]));
-const result = Object.fromEntries(['target','growth','food','profits','ad-row','ad-cost','verdict','discount-label'].map(id => [id, document.getElementById(id)]));
+const result = Object.fromEntries(['target','growth','food','profits','ad-row','ad-cost','ad-total-row','ad-total','verdict','discount-label'].map(id => [id, document.getElementById(id)]));
+const budgetDays = 30;
 const integer = new Intl.NumberFormat('ru');
 const money = new Intl.NumberFormat('ru', {minimumFractionDigits:0, maximumFractionDigits:2});
 const oneDecimal = new Intl.NumberFormat('ru', {minimumFractionDigits:1, maximumFractionDigits:1});
@@ -312,10 +314,11 @@ const marginMetric = statMetric(result.profits, ([normal, promo, delta]) =>
   (delta === undefined ? '' : ' (' + (delta > 0 ? '+' : '') + percent(delta) + ')'));
 let isSet = false;
 let lastManualInput = -Infinity;
-function units(count) {
-  if (!isSet) return integer.format(count) + ' шт.';
+function units(count, formatter = integer) {
+  const quantity = formatter.format(count);
+  if (!isSet) return quantity + ' шт.';
   const forms = {one:'сет', few:'сета', many:'сетов', other:'сета'};
-  return integer.format(count) + ' ' + forms[russianPlural.select(count)];
+  return quantity + ' ' + forms[russianPlural.select(count)];
 }
 function verdict(level, text) {
   result.verdict.dataset.level = level;
@@ -324,9 +327,10 @@ function verdict(level, text) {
 function calculate(immediate = false) {
   const valid = Object.values(numberFields).every(input => input.validity.valid && Number.isFinite(input.valueAsNumber));
   result['ad-row'].hidden = true;
+  result['ad-total-row'].hidden = true;
   if (!valid) {
     for (const update of [targetMetric, foodMetric, marginMetric]) update('—', true);
-    for (const id of ['growth','ad-cost','discount-label']) result[id].textContent = '—';
+    for (const id of ['growth','discount-label']) result[id].textContent = '—';
     verdict('risk', 'Проверьте поля. Базовая цена и объем должны быть положительными, себестоимость, промо-цена и бюджет — от нуля.');
     return;
   }
@@ -349,8 +353,10 @@ function calculate(immediate = false) {
   marginMetric(margins, immediate);
   result['ad-row'].hidden = budget === 0;
   if (budget > 0) {
+    const extra = promoMargin > 0 ? Math.ceil(budget / promoMargin) : 0;
     result['ad-cost'].textContent = promoMargin > 0
-      ? '+' + units(Math.ceil(budget / promoMargin)) + ' за 30 дней сверх базового порога'
+      ? '+' + units(extra) + ' за ' + budgetDays + ' дней (+'
+        + units(extra / budgetDays, money) + '/день в среднем)'
       : 'Промо-маржа не покрывает рекламный бюджет.';
   }
   if (promoMargin <= 0) {
@@ -370,10 +376,17 @@ function calculate(immediate = false) {
   const target = Math.ceil(volume * regularMargin / promoMargin);
   targetMetric([target], immediate);
   result.growth.textContent = '×' + ratio.format(multiplier) + ' / ' + (growth > 0 ? '+' : '') + integer.format(Math.round(growth)) + '% к базовому объему, без бюджета';
-  if (regularMargin * 100 > promoMargin * 180) {
+  const periodProfit = volume * regularMargin * budgetDays + budget;
+  const targetWithBudget = budget > 0 ? Math.ceil(periodProfit / (promoMargin * budgetDays)) : target;
+  if (budget > 0) {
+    result['ad-total'].textContent = units(targetWithBudget) + '/день';
+    result['ad-total-row'].hidden = false;
+  }
+  if (periodProfit * 100 > volume * promoMargin * budgetDays * 180) {
     verdict('risk', 'Высокий риск просадки валовой прибыли. Нужен рост более 80%. Проверьте вариант с жестким лимитом или доплатой.');
   } else {
-    verdict('ok', 'Промо-маржа положительная. При указанном объеме акция сохраняет базовую валовую прибыль.');
+    verdict('ok', 'Рабочий сценарий. Для сохранения базовой валовой прибыли цель — от '
+      + units(targetWithBudget) + ' в день' + (budget > 0 ? ' с учетом бюджета.' : '.'));
   }
 }
 

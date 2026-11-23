@@ -21,10 +21,10 @@
   <meta name="twitter:title" content="Григорий Корепанов — аналитика продаж, маркетинг, проекты и ИИ">
   <meta name="twitter:description" content="Портфолио с интерактивными инструментами: BI-дашборд Yandex DataLens, калькулятор экономики промо, демо-пульт запусков сети и кейсы в цифрах.">
   <meta name="twitter:image" content="https://grigory9030.github.io/assets/img/og-preview.png">
-  <script src="theme.js"></script>
-  <link rel="stylesheet" href="styles.css">
+  <script src="theme.js?v=2"></script>
+  <link rel="stylesheet" href="styles.css?v=2">
   <script src="motion.js" defer></script>
-  <script src="app.js" defer></script>
+  <script src="app.js?v=2" defer></script>
 </head>
 <body>
 <svg class="jelly-filter" width="0" height="0" aria-hidden="true">
@@ -50,7 +50,7 @@
     </header>
     <div class="hero-body">
       <div class="hero-copy">
-        <h1 id="name">Григорий<br>Корепанов</h1>
+        <h1 id="name" tabindex="-1">Григорий<br>Корепанов</h1>
         <p class="position">Аналитика продаж, маркетинг,<br class="desktop"> координация проектов и ИИ</p>
         <p class="intro">По образованию экономист, 13 лет внутри HoReCa. Считаю экономику акций до старта, нахожу сбои в учете и довожу механики до результата на кассе и в вебе.</p>
         <div class="buttons"><a class="btn bright" href="#tools">Открыть инструменты ↗</a><a class="btn outline" href="#contacts">Связаться</a></div>
@@ -95,6 +95,7 @@
     <div class="presets" aria-label="Пресеты калькулятора">
       <button type="button" data-preset="dish">Пресет: Скидка на блюдо (-42%)</button>
       <button type="button" data-preset="set">Пресет: Механика 1+1 (сет)</button>
+      <button type="button" data-preset="coupon">Пресет: Купон -15% + бюджет</button>
       <button type="button" id="reset-calc">Сбросить</button>
     </div>
     <div class="calc-layout">
@@ -133,7 +134,12 @@
       </form>
       <div class="calc-result" aria-live="polite" aria-atomic="true">
         <h3>Точка безубыточности</h3><strong id="target"></strong><p id="growth"></p>
-        <dl><div><dt>Фудкост до → в акции</dt><dd id="food"></dd></div><div><dt>Валовая маржа с 1 шт. до → в акции</dt><dd id="profits"></dd></div><div id="ad-row" hidden><dt>Окупаемость бюджета</dt><dd id="ad-cost"></dd></div></dl>
+        <dl>
+          <div><dt>Фудкост до → в акции</dt><dd id="food"></dd></div>
+          <div><dt>Валовая маржа с 1 шт. до → в акции</dt><dd id="profits"></dd></div>
+          <div id="ad-row" hidden><dt>Окупаемость бюджета</dt><dd id="ad-cost"></dd></div>
+          <div id="ad-total-row" hidden><dt>Точка безубыточности с бюджетом</dt><dd id="ad-total"></dd></div>
+        </dl>
         <div id="verdict" class="verdict"></div>
       </div>
     </div>
@@ -201,6 +207,9 @@
     <div class="buttons"><a class="btn bright" href="https://t.me/gri_goriy" target="_blank" rel="noopener">Telegram @gri_goriy ↗</a><a class="btn outline" href="tel:+79002819490">+7 (900) 281-94-90</a><a class="btn outline" href="mailto:grigory9030@gmail.com">grigory9030@gmail.com</a></div>
     <small>© 2026 Григорий Корепанов · Все кейсы и демо-инструменты обезличены с соблюдением NDA</small></footer>
 </main>
+<button class="back-to-top" type="button" aria-label="Вернуться наверх" inert>
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5m-5 5 5-5 5 5"/></svg>
+</button>
 <dialog id="lightbox" aria-label="Дашборд аналитики допродаж"><div class="viewer-head"><strong>BI DataLens</strong><div><button type="button" id="zoom" aria-pressed="false">Увеличить</button><button type="button" id="close-viewer" aria-label="Закрыть просмотр">Закрыть ×</button></div></div><div class="image-stage"><img src="assets/img/datalens-preview.png" alt="Дашборд по четырем ресторанам: выручка, средний чек, доля допродаж и рейтинг кассиров" width="1424" height="1226"></div></dialog>
 </body>
 </html>
