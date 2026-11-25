@@ -4,70 +4,70 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <title>Пульт управления запусками сети — демо | Григорий Корепанов</title>
-  <meta name="description" content="Интерактивный реестр маркетинговых запусков сети из 24 ресторанов: задачи, бюджеты, статусы и чек-лист подготовки акции.">
+  <title>Пульт управления клиентскими запусками (PM / Account) - демо | Григорий Корепанов</title>
+  <meta name="description" content="Демо-данные для пульта клиентских запусков. Веб-релизы, сверка данных, онбординг, интеграции и квартальный QBR.">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:url" content="https://grigory9030.github.io/tracker.html">
-  <meta property="og:title" content="Пульт управления запусками сети — демо | Григорий Корепанов">
-  <meta property="og:description" content="Интерактивный реестр маркетинговых запусков сети из 24 ресторанов: задачи, бюджеты, статусы и чек-лист подготовки акции.">
+  <meta property="og:title" content="Пульт управления клиентскими запусками (PM / Account) - демо | Григорий Корепанов">
+  <meta property="og:description" content="Демо-данные для пульта клиентских запусков. Веб-релизы, сверка данных, онбординг, интеграции и квартальный QBR.">
   <meta property="og:image" content="https://grigory9030.github.io/assets/img/og-preview.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Григорий Корепанов, аналитика продаж и маркетинг">
+  <meta property="og:image:alt" content="Григорий Корепанов, бизнес-аналитика и управление проектами">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Пульт управления запусками сети — демо | Григорий Корепанов">
-  <meta name="twitter:description" content="Интерактивный реестр маркетинговых запусков сети из 24 ресторанов: задачи, бюджеты, статусы и чек-лист подготовки акции.">
+  <meta name="twitter:title" content="Пульт управления клиентскими запусками (PM / Account) - демо | Григорий Корепанов">
+  <meta name="twitter:description" content="Демо-данные для пульта клиентских запусков. Веб-релизы, сверка данных, онбординг, интеграции и квартальный QBR.">
   <meta name="twitter:image" content="https://grigory9030.github.io/assets/img/og-preview.png">
   <script src="theme.js?v=2"></script>
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=4">
   <script src="motion.js" defer></script>
-  <script src="tracker.js" defer></script>
+  <script src="tracker.js?v=2" defer></script>
 </head>
 <body class="tracker">
 <a class="skip" href="#workspace">К рабочей области</a>
 <main class="page launch-page">
   <header class="panel launch-head">
-    <div class="launch-top"><a href="./index.html" data-theme-link>← На главную</a><span class="demo-stamp">ДЕМО-ПРОТОТИП · В работе: Google Sheets + Apps Script</span>
+    <div class="launch-top"><a href="./index.html" data-theme-link>← На главную</a><span class="demo-stamp">ДЕМО-ДАННЫЕ</span>
       <button class="theme-toggle" type="button" aria-label="Темная тема" aria-pressed="false" title="Переключить тему"><span aria-hidden="true">☀</span><span aria-hidden="true">☾</span></button>
     </div>
-    <div class="launch-hero"><div><h1 tabindex="-1">Пульт управления<br>запусками сети <small>(демо)</small></h1><p>Условная сеть из 24 ресторанов · Изменения сохраняются в вашем браузере (localStorage)</p></div>
+    <div class="launch-hero"><div><h1 tabindex="-1">Пульт управления клиентскими запусками (PM / Account)</h1><p>Демо-данные. Реестр задач, статусы и чек-лист запуска. Изменения сохраняются в вашем браузере.</p></div>
       <div class="launch-actions"><button class="primary" id="add-task">+ Добавить задачу</button><button id="reset-demo">Сбросить демо</button><button id="csv">CSV</button><button id="markdown">Markdown</button></div>
     </div>
   </header>
 
-  <section class="kpi-grid" aria-label="Показатели сети">
+  <section class="kpi-grid" aria-label="Показатели запусков">
     <div class="panel kpi"><span>В работе и к запуску</span><strong id="active-count"></strong></div>
     <div class="panel kpi"><span>Бюджет активных запусков</span><strong id="active-budget"></strong></div>
     <div class="panel kpi"><span>Контроль факта / завершено</span><strong id="done-count"></strong></div>
-    <div class="panel kpi"><span>Контур сети</span><strong>24 <small>ресторана · 6 направлений</small></strong></div>
+    <div class="panel kpi"><span>Демонстрационный контур</span><strong>3 <small>клиента · 6 направлений</small></strong></div>
   </section>
 
   <section class="panel launch-work" id="workspace" aria-label="Рабочая область">
     <div class="launch-tabs" role="tablist" aria-label="Разделы пульта">
       <button role="tab" id="registry-tab" aria-controls="registry" aria-selected="true">Реестр запусков <span id="total">(12)</span></button>
-      <button role="tab" id="check-tab" aria-controls="checklist" aria-selected="false" tabindex="-1">Чек-лист запуска акции (8)</button>
+      <button role="tab" id="check-tab" aria-controls="checklist" aria-selected="false" tabindex="-1">Чек-лист клиентского запуска (8)</button>
     </div>
     <div id="registry" role="tabpanel" aria-labelledby="registry-tab">
       <div class="registry-filters">
         <div class="status-strip" id="counts" aria-label="Фильтр по статусу"></div>
         <div class="filters-main">
-          <label>Поиск<input type="search" id="search" placeholder="Задача, точка или ответственный"></label>
+          <label>Поиск<input type="search" id="search" placeholder="Задача, проект или ответственный"></label>
           <label>Направление<select id="channel"><option value="">Все направления</option></select></label>
           <label>Сортировка<select id="sort"><option value="priority">По приоритету</option><option value="budget">По бюджету</option><option value="deadline">По сроку</option></select></label>
         </div>
         <div class="quick-filters" aria-label="Быстрые пресеты"><button data-preset="all">Все задачи</button><button data-preset="high">Высокий приоритет</button><button data-preset="money">С бюджетом &gt; 0</button><button data-preset="control">На контроле факта</button></div>
       </div>
       <div class="scroll-table" role="region" tabindex="0" aria-label="Реестр задач, таблица с горизонтальной прокруткой">
-        <table><thead><tr><th scope="col">Задача / точка</th><th scope="col">Направление</th><th scope="col">Статус</th><th scope="col">Приоритет</th><th scope="col">Срок</th><th scope="col">Бюджет</th></tr></thead><tbody id="rows"></tbody></table>
+        <table><thead><tr><th scope="col">Задача / проект</th><th scope="col">Направление</th><th scope="col">Статус</th><th scope="col">Приоритет</th><th scope="col">Срок</th><th scope="col">Бюджет</th></tr></thead><tbody id="rows"></tbody></table>
       </div>
       <div id="empty" hidden><p>Задач по этим условиям нет.</p><button id="clear-filters">Сбросить фильтры</button></div>
       <div class="table-foot" id="row-count" aria-live="polite"></div>
     </div>
     <div id="checklist" role="tabpanel" aria-labelledby="check-tab" hidden>
-      <div class="check-head"><h2>Чек-лист запуска акции</h2><strong id="progress-text"></strong></div>
+      <div class="check-head"><h2>Чек-лист клиентского запуска</h2><strong id="progress-text"></strong></div>
       <progress id="progress" max="8" value="3" aria-label="Прогресс чек-листа"></progress>
       <ol id="steps"></ol>
     </div>
@@ -88,7 +88,7 @@
     <div class="dialog-head"><h2 id="add-title">Добавить задачу</h2><button type="button" data-close aria-label="Закрыть">×</button></div>
     <div class="modal-fields">
       <label class="wide">Название задачи<input name="title" required maxlength="200" autofocus></label>
-      <label>Точка или кластер<input name="branch" required maxlength="100" list="branch-list"></label>
+      <label>Проект или контур<input name="branch" required maxlength="100" list="branch-list"></label>
       <label>Направление<select name="channel" required></select></label>
       <label>Ответственный<input name="owner" required maxlength="100" list="owner-list"></label>
       <label>Срок<input type="date" name="deadline" required></label>
