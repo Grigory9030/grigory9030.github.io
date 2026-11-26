@@ -23,11 +23,11 @@
   <meta name="twitter:description" data-i18n-content="pageDescription" content="Портфолио с двумя дашбордами Yandex DataLens, SQL-аудитом данных, онбордингом B2B, клиентским QBR, калькулятором SKU и пультом запусков.">
   <meta name="twitter:image" content="https://grigory9030.github.io/assets/img/og-preview.png">
   <script src="theme.js?v=2"></script>
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=5">
   <script src="motion.js" defer></script>
-  <script src="i18n.js?v=1" defer></script>
+  <script src="i18n.js?v=2" defer></script>
   <script src="diagrams.js?v=1" defer></script>
-  <script src="app.js?v=3" defer></script>
+  <script src="app.js?v=4" defer></script>
 </head>
 <body>
 <svg class="jelly-filter" width="0" height="0" aria-hidden="true">
@@ -63,11 +63,12 @@
     <section class="panel hero" aria-labelledby="name" id="top">
       <div class="hero-body">
         <div class="hero-copy">
-          <h1 id="name" tabindex="-1" data-i18n="name">Григорий Корепанов</h1>
-          <p class="position" data-i18n="position">Бизнес-аналитика, управление проектами и клиентские процессы</p>
+          <h1 id="name" tabindex="-1"><span data-i18n="firstName">ГРИГОРИЙ</span><br>
+            <span data-i18n="lastName">КОРЕПАНОВ</span></h1>
+          <p class="position" data-i18n="position">Маркетинг, аналитика, управление проектами и клиентские процессы</p>
           <p class="intro" data-i18n="intro">Экономист по образованию. Считаю юнит-экономику до запуска, нахожу сбои в данных через SQL и BI, выстраиваю процессы и клиентскую отчетность.</p>
           <div class="buttons"><a class="btn bright" href="#tools" data-i18n="openArtifacts">Смотреть артефакты</a><a class="btn outline" href="#contacts" data-i18n="getInTouch">Связаться</a></div>
-          <p class="facts" data-i18n="heroStack">SQL · Yandex DataLens · Excel / Sheets · BPMN 2.0 · Английский C1 · Удаленно</p>
+          <p class="facts" data-i18n="heroStack">SQL · Yandex DataLens · Excel / Sheets · Яндекс Метрика / Директ · CRM · BPMN 2.0 · Английский C1 · Удаленно</p>
         </div>
         <div class="portrait-frame">
           <picture>
@@ -84,20 +85,25 @@
         <article class="bento-card bento-bi">
           <h3><span class="bento-index">01</span> BI DataLens (x2)</h3>
           <div class="bi-cards">
-            <a class="artifact-link bi-primary" href="https://datalens.yandex/ydxwelwaeq0ih?_share_link=public" target="_blank" rel="noopener">
+            <article class="bi-card">
               <span class="artifact-kind" data-i18n="demoData">демо-данные</span>
-              <strong data-i18n="funnelName">E-com воронка каналов и аудит статусов</strong>
+              <h4 data-i18n="funnelName">E-com воронка каналов и аудит статусов</h4>
               <span class="bi-metrics" data-i18n="funnelMetrics">ДРР 12,7% · CPA 889 руб. · Разрыв 21,7%</span>
               <span class="artifact-detail" data-i18n="funnelPeriod">Детализация День / Неделя</span>
-            </a>
-            <div class="bi-secondary">
-              <a class="artifact-link" href="https://datalens.yandex/4i9kp7n8df4an?_share_link=public" target="_blank" rel="noopener">
-                <span class="artifact-kind" data-i18n="demoData">демо-данные</span>
-                <strong data-i18n="upsellName">Допродажи и средний чек сети</strong>
-                <span class="artifact-detail" data-i18n="upsellDetail">Рейтинг точек и динамика допродаж</span>
-              </a>
-              <a class="inline-link" id="show-dashboard" href="assets/img/datalens-preview.png" data-i18n="previewDashboard">Увеличить скриншот</a>
-            </div>
+              <div class="bi-actions">
+                <a class="bi-action" href="https://datalens.ru/ydxwelwaeq0ih-e-com-analitika-voronka-kanalov-i-audit-statusov-zakaz" target="_blank" rel="noopener" data-i18n="openDashboard">Открыть дашборд</a>
+                <button class="bi-action" type="button" aria-haspopup="dialog" aria-controls="lightbox" data-preview="assets/datalens-ecom.png" data-i18n="previewDashboard">Превью</button>
+              </div>
+            </article>
+            <article class="bi-card">
+              <span class="artifact-kind" data-i18n="demoData">демо-данные</span>
+              <h4 data-i18n="upsellName">Допродажи и средний чек сети</h4>
+              <span class="artifact-detail" data-i18n="upsellDetail">Рейтинг точек и динамика допродаж</span>
+              <div class="bi-actions">
+                <a class="bi-action" href="https://datalens.yandex/4i9kp7n8df4an?_share_link=public" target="_blank" rel="noopener" data-i18n="openDashboard">Открыть дашборд</a>
+                <button class="bi-action" type="button" aria-haspopup="dialog" aria-controls="lightbox" data-preview="assets/img/datalens-preview.png" data-preview-webp="assets/img/datalens-preview.webp" data-i18n="previewDashboard">Превью</button>
+              </div>
+            </article>
           </div>
         </article>
         <a class="bento-card bento-sql" href="#sql">
@@ -135,16 +141,25 @@ JOIN order_items i ON o.order_id = i.order_id</code></pre>
         <button type="button" class="pill-option" role="tab" id="sql-tab-payments" aria-controls="sql-payments" aria-selected="false" tabindex="-1" data-i18n="tabPayments">02 Сверка оплат (CTE)</button>
         <button type="button" class="pill-option" role="tab" id="sql-tab-duplicates" aria-controls="sql-duplicates" aria-selected="false" tabindex="-1" data-i18n="tabDuplicates">03 Дубли (ROW_NUMBER)</button>
       </div>
-      <div class="audit-panel" id="sql-status" role="tabpanel" aria-labelledby="sql-tab-status">
-        <div class="code-card">
-          <div class="code-head"><span>SQL</span><button class="copy-query" type="button" data-copy-sql data-i18n="copy">Копировать</button></div>
-          <pre class="sql-pre" tabindex="0" aria-label="SQL-запрос" data-i18n-label="sqlQuery"><code data-sql>SELECT
-    COUNT(DISTINCT CASE WHEN o.status = 'delivered' THEN o.order_id END) AS delivered_orders,
+      <div class="audit-panels">
+        <div class="audit-panel" id="sql-status" role="tabpanel" aria-labelledby="sql-tab-status">
+          <div class="code-card">
+            <div class="code-head"><span>SQL</span><button class="copy-query" type="button" data-copy-sql data-i18n="copy">Копировать</button></div>
+            <pre class="sql-pre" tabindex="0" aria-label="SQL-запрос" data-i18n-label="sqlQuery"><code data-sql>SELECT
+    COUNT(DISTINCT CASE
+        WHEN o.status = 'delivered' THEN o.order_id
+    END) AS delivered_orders,
     COUNT(DISTINCT o.order_id) AS paid_all_orders,
-    SUM(CASE WHEN o.status = 'delivered' THEN i.qty * i.price ELSE 0 END) AS delivered_revenue,
+    SUM(CASE
+        WHEN o.status = 'delivered' THEN i.qty * i.price
+        ELSE 0
+    END) AS delivered_revenue,
     SUM(i.qty * i.price) AS paid_all_revenue,
     ROUND(
-        (SUM(i.qty * i.price) - SUM(CASE WHEN o.status = 'delivered' THEN i.qty * i.price ELSE 0 END))
+        (SUM(i.qty * i.price) - SUM(CASE
+            WHEN o.status = 'delivered' THEN i.qty * i.price
+            ELSE 0
+        END))
         * 100.0 / NULLIF(SUM(i.qty * i.price), 0),
         1
     ) AS lost_revenue_pct
@@ -153,25 +168,25 @@ JOIN order_items i ON o.order_id = i.order_id
 WHERE o.order_date &gt;= '2026-11-01'
   AND o.order_date &lt; '2026-12-01'
   AND o.status &lt;&gt; 'cancelled';</code></pre>
+          </div>
+          <article class="audit-result">
+            <h3 data-i18n="beforeAfter">До / После аудита</h3>
+            <p data-i18n="statusDesc">Старый отчет учитывал только статус delivered. На контрольной выборке он скрывал 70% оплаченной выручки.</p>
+            <div class="audit-highlight"><strong data-i18n="statusHighlight">3 000 → 10 000 руб.</strong><span data-i18n="paidRevenue">Оплаченная выручка</span></div>
+            <div class="audit-table-wrap"><table>
+              <thead><tr><th scope="col" data-i18n="metric">Метрика</th><th scope="col" data-i18n="before">До</th><th scope="col" data-i18n="after">После</th></tr></thead>
+              <tbody>
+                <tr><th scope="row" data-i18n="countedOrders">Учтено заказов</th><td>1</td><td>3</td></tr>
+                <tr><th scope="row" data-i18n="revenueRub">Выручка, руб.</th><td>3 000</td><td>10 000</td></tr>
+                <tr><th scope="row" data-i18n="coverage">Доля учтенной выручки</th><td>30%</td><td>100%</td></tr>
+              </tbody>
+            </table></div>
+          </article>
         </div>
-        <article class="audit-result">
-          <h3 data-i18n="beforeAfter">До / После аудита</h3>
-          <p data-i18n="statusDesc">Старый отчет учитывал только статус delivered. На контрольной выборке он скрывал 70% оплаченной выручки.</p>
-          <div class="audit-highlight"><strong data-i18n="statusHighlight">3 000 → 10 000 руб.</strong><span data-i18n="paidRevenue">Оплаченная выручка</span></div>
-          <div class="audit-table-wrap"><table>
-            <thead><tr><th scope="col" data-i18n="metric">Метрика</th><th scope="col" data-i18n="before">До</th><th scope="col" data-i18n="after">После</th></tr></thead>
-            <tbody>
-              <tr><th scope="row" data-i18n="countedOrders">Учтено заказов</th><td>1</td><td>3</td></tr>
-              <tr><th scope="row" data-i18n="revenueRub">Выручка, руб.</th><td>3 000</td><td>10 000</td></tr>
-              <tr><th scope="row" data-i18n="coverage">Доля учтенной выручки</th><td>30%</td><td>100%</td></tr>
-            </tbody>
-          </table></div>
-        </article>
-      </div>
-      <div class="audit-panel" id="sql-payments" role="tabpanel" aria-labelledby="sql-tab-payments" hidden>
-        <div class="code-card">
-          <div class="code-head"><span>SQL</span><button class="copy-query" type="button" data-copy-sql data-i18n="copy">Копировать</button></div>
-          <pre class="sql-pre" tabindex="0" aria-label="SQL-запрос" data-i18n-label="sqlQuery"><code data-sql>WITH items_agg AS (
+        <div class="audit-panel" id="sql-payments" role="tabpanel" aria-labelledby="sql-tab-payments" hidden>
+          <div class="code-card">
+            <div class="code-head"><span>SQL</span><button class="copy-query" type="button" data-copy-sql data-i18n="copy">Копировать</button></div>
+            <pre class="sql-pre" tabindex="0" aria-label="SQL-запрос" data-i18n-label="sqlQuery"><code data-sql>WITH items_agg AS (
     SELECT order_id, SUM(qty * price) AS items_sum
     FROM order_items
     GROUP BY order_id
@@ -194,24 +209,24 @@ WHERE o.order_date &gt;= '2026-11-01'
   AND o.order_date &lt; '2026-12-01'
   AND o.status &lt;&gt; 'cancelled'
   AND COALESCE(p.paid_sum, 0) &lt;&gt; i.items_sum;</code></pre>
+          </div>
+          <article class="audit-result">
+            <h3 data-i18n="beforeAfter">До / После аудита</h3>
+            <p data-i18n="paymentsDesc">При прямом JOIN позиции и платежи размножают строки. Сначала суммируем каждую таблицу по заказу, затем сверяем итоги. LEFT JOIN сохраняет заказы без оплаты.</p>
+            <div class="audit-highlight"><strong data-i18n="paymentsHighlight">6 000 -&gt; 3 000 руб.</strong><span data-i18n="paymentsLabel">Сумма заказа 101 до и после CTE (убран fan-out)</span></div>
+            <div class="audit-table-wrap"><table>
+              <thead><tr><th scope="col" data-i18n="order">Заказ</th><th scope="col" data-i18n="itemsRub">Позиций, руб.</th><th scope="col" data-i18n="paidRub">Оплат, руб.</th><th scope="col" data-i18n="diffRub">Разница, руб.</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">102</th><td>4 000</td><td>3 500</td><td class="audit-difference">-500</td></tr>
+                <tr><th scope="row">103</th><td>3 000</td><td>0</td><td class="audit-difference">-3 000</td></tr>
+              </tbody>
+            </table></div>
+          </article>
         </div>
-        <article class="audit-result">
-          <h3 data-i18n="beforeAfter">До / После аудита</h3>
-          <p data-i18n="paymentsDesc">При прямом JOIN позиции и платежи размножают строки. Сначала суммируем каждую таблицу по заказу, затем сверяем итоги. LEFT JOIN сохраняет заказы без оплаты.</p>
-          <div class="audit-highlight"><strong data-i18n="paymentsHighlight">7 000 → 3 500 руб.</strong><span data-i18n="paymentsLabel">Сумма оплат заказа 102 до и после CTE</span></div>
-          <div class="audit-table-wrap"><table>
-            <thead><tr><th scope="col" data-i18n="order">Заказ</th><th scope="col" data-i18n="itemsRub">Позиций, руб.</th><th scope="col" data-i18n="paidRub">Оплат, руб.</th><th scope="col" data-i18n="diffRub">Разница, руб.</th></tr></thead>
-            <tbody>
-              <tr><th scope="row">102</th><td>4 000</td><td>3 500</td><td class="audit-difference">-500</td></tr>
-              <tr><th scope="row">103</th><td>3 000</td><td>0</td><td class="audit-difference">-3 000</td></tr>
-            </tbody>
-          </table></div>
-        </article>
-      </div>
-      <div class="audit-panel" id="sql-duplicates" role="tabpanel" aria-labelledby="sql-tab-duplicates" hidden>
-        <div class="code-card">
-          <div class="code-head"><span>SQL</span><button class="copy-query" type="button" data-copy-sql data-i18n="copy">Копировать</button></div>
-          <pre class="sql-pre" tabindex="0" aria-label="SQL-запрос" data-i18n-label="sqlQuery"><code data-sql>WITH dedup_payments AS (
+        <div class="audit-panel" id="sql-duplicates" role="tabpanel" aria-labelledby="sql-tab-duplicates" hidden>
+          <div class="code-card">
+            <div class="code-head"><span>SQL</span><button class="copy-query" type="button" data-copy-sql data-i18n="copy">Копировать</button></div>
+            <pre class="sql-pre" tabindex="0" aria-label="SQL-запрос" data-i18n-label="sqlQuery"><code data-sql>WITH dedup_payments AS (
     SELECT
         payment_id,
         order_id,
@@ -229,19 +244,20 @@ WHERE p.rn = 1
   AND o.status &lt;&gt; 'cancelled'
 GROUP BY o.utm_source
 ORDER BY clean_revenue DESC;</code></pre>
+          </div>
+          <article class="audit-result">
+            <h3 data-i18n="beforeAfter">До / После аудита</h3>
+            <p data-i18n="duplicatesDesc">Повторный вебхук платежного шлюза завысил выручку Поиска. ROW_NUMBER оставляет первое событие для каждого payment_id.</p>
+            <div class="audit-highlight"><strong data-i18n="duplicatesHighlight">5 000 → 3 000 руб.</strong><span>yandex_search</span></div>
+            <div class="audit-table-wrap"><table>
+              <thead><tr><th scope="col" data-i18n="channel">Канал</th><th scope="col" data-i18n="beforeRub">До, руб.</th><th scope="col" data-i18n="afterRub">После, руб.</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">yandex_rsya</th><td>3 500</td><td>3 500</td></tr>
+                <tr><th scope="row">yandex_search</th><td>5 000</td><td>3 000</td></tr>
+              </tbody>
+            </table></div>
+          </article>
         </div>
-        <article class="audit-result">
-          <h3 data-i18n="beforeAfter">До / После аудита</h3>
-          <p data-i18n="duplicatesDesc">Повторный вебхук платежного шлюза завысил выручку Поиска. ROW_NUMBER оставляет первое событие для каждого payment_id.</p>
-          <div class="audit-highlight"><strong data-i18n="duplicatesHighlight">5 000 → 3 000 руб.</strong><span>yandex_search</span></div>
-          <div class="audit-table-wrap"><table>
-            <thead><tr><th scope="col" data-i18n="channel">Канал</th><th scope="col" data-i18n="beforeRub">До, руб.</th><th scope="col" data-i18n="afterRub">После, руб.</th></tr></thead>
-            <tbody>
-              <tr><th scope="row">yandex_rsya</th><td>3 500</td><td>3 500</td></tr>
-              <tr><th scope="row">yandex_search</th><td>5 000</td><td>3 000</td></tr>
-            </tbody>
-          </table></div>
-        </article>
       </div>
       <p class="motion-sr" id="copy-status" role="status"></p>
     </section>
@@ -252,69 +268,73 @@ ORDER BY clean_revenue DESC;</code></pre>
         <button type="button" class="pill-option" role="tab" id="tab-bpmn" aria-controls="bpmn" aria-selected="true">BPMN 2.0</button>
         <button type="button" class="pill-option" role="tab" id="tab-qbr" aria-controls="qbr" aria-selected="false" tabindex="-1">QBR</button>
       </div>
-      <div id="bpmn" role="tabpanel" aria-labelledby="tab-bpmn">
-        <div class="process-head">
-          <h3 data-i18n="bpmnTitle">BPMN 2.0: Онбординг B2B (AS-IS / TO-BE)</h3>
-          <div class="pill-group model-tabs" role="tablist" aria-label="Модели онбординга" data-i18n-label="modelTabs" data-pill>
-            <button type="button" class="pill-option" role="tab" id="tab-as-is" aria-controls="as-is" aria-selected="true">AS-IS</button>
-            <button type="button" class="pill-option" role="tab" id="tab-to-be" aria-controls="to-be" aria-selected="false" tabindex="-1">TO-BE</button>
+      <div class="process-modes">
+        <div id="bpmn" role="tabpanel" aria-labelledby="tab-bpmn">
+          <div class="process-head">
+            <h3 data-i18n="bpmnTitle">BPMN 2.0: Онбординг B2B (AS-IS / TO-BE)</h3>
+            <div class="pill-group model-tabs" role="tablist" aria-label="Модели онбординга" data-i18n-label="modelTabs" data-pill>
+              <button type="button" class="pill-option" role="tab" id="tab-as-is" aria-controls="as-is" aria-selected="true">AS-IS</button>
+              <button type="button" class="pill-option" role="tab" id="tab-to-be" aria-controls="to-be" aria-selected="false" tabindex="-1">TO-BE</button>
+            </div>
           </div>
-        </div>
-        <div id="as-is" role="tabpanel" aria-labelledby="tab-as-is" class="process-panel">
-          <p class="lead" data-i18n="asIsDesc">Клиенту пишут 4-5 раз. Три специалиста разбирают доступы в общем чате. Таймера SLA нет.</p>
-          <div class="diagram-scroll" role="region" tabindex="0" aria-label="Схема текущего онбординга" data-i18n-label="asIsLabel">
-            <svg class="swimlanes" id="as-is-diagram" role="img" aria-labelledby="as-is-svg-title" aria-describedby="as-is-svg-desc" viewBox="0 0 1210 440"></svg>
+          <div class="process-models">
+            <div id="as-is" role="tabpanel" aria-labelledby="tab-as-is" class="process-panel">
+              <p class="lead" data-i18n="asIsDesc">Клиенту пишут 4-5 раз. Три специалиста разбирают доступы в общем чате. Таймера SLA нет.</p>
+              <div class="diagram-scroll" role="region" tabindex="0" aria-label="Схема текущего онбординга" data-i18n-label="asIsLabel">
+                <svg class="swimlanes" id="as-is-diagram" role="img" aria-labelledby="as-is-svg-title" aria-describedby="as-is-svg-desc" viewBox="0 0 1210 440"></svg>
+              </div>
+            </div>
+            <div id="to-be" role="tabpanel" aria-labelledby="tab-to-be" class="process-panel" hidden>
+              <p class="lead" data-i18n="toBeDesc">Договор и intake-анкета уходят одним пакетом. Финансы и интеграция работают параллельно. Доступ выдается после подтверждения оплаты и готовности интеграции.</p>
+              <div class="diagram-scroll" role="region" tabindex="0" aria-label="Схема целевого онбординга" data-i18n-label="toBeLabel">
+                <svg class="swimlanes" id="to-be-diagram" role="img" aria-labelledby="to-be-svg-title" aria-describedby="to-be-svg-desc" viewBox="0 0 1210 440"></svg>
+              </div>
+            </div>
           </div>
+          <p class="diagram-hint" data-i18n="diagramHint">На узком экране схему можно прокрутить по горизонтали.</p>
+          <ul class="process-badges">
+            <li data-i18n="touches">Касания клиента: 5 -> 2</li><li data-i18n="singleOwner">Единый владелец интеграции</li><li data-i18n="paymentGate">Гейт оплаты и SLA 48ч</li>
+          </ul>
         </div>
-        <div id="to-be" role="tabpanel" aria-labelledby="tab-to-be" class="process-panel" hidden>
-          <p class="lead" data-i18n="toBeDesc">Договор и intake-анкета уходят одним пакетом. Финансы и интеграция работают параллельно. Доступ выдается после подтверждения оплаты и готовности интеграции.</p>
-          <div class="diagram-scroll" role="region" tabindex="0" aria-label="Схема целевого онбординга" data-i18n-label="toBeLabel">
-            <svg class="swimlanes" id="to-be-diagram" role="img" aria-labelledby="to-be-svg-title" aria-describedby="to-be-svg-desc" viewBox="0 0 1210 440"></svg>
+        <div id="qbr" role="tabpanel" aria-labelledby="tab-qbr" hidden>
+          <h3 class="qbr-title" data-i18n="qbrTitle">Шаблон клиентского QBR-отчета</h3>
+          <p class="lead" data-i18n="qbrIntro">Пример структуры квартальной встречи. Показатели и сценарии ниже - демо-данные.</p>
+          <div class="qbr-grid">
+            <article class="qbr-card">
+              <h4><span class="bento-index">01</span> <span data-i18n="qbrKpi">Итоги квартала (KPI План/Факт)</span></h4>
+              <dl class="qbr-measures">
+                <div><dt data-i18n="qbrRevenue">Выручка</dt><dd data-i18n="qbrRevenueValue">100% / 96% плана</dd></div>
+                <div><dt data-i18n="qbrChannels">Динамика каналов</dt><dd data-i18n="qbrChannelValue">CRM +12% к прошлому кварталу</dd></div>
+                <div><dt data-i18n="qbrBasket">Средний чек</dt><dd data-i18n="qbrBasketValue">+3% / +4% к прошлому кварталу</dd></div>
+              </dl>
+              <p class="qbr-decision"><span data-i18n="qbrVerdictLine1">Выручка ниже плана на 4%.</span><br><span data-i18n="qbrVerdictLine2">Пересмотреть вклад платных каналов.</span></p>
+            </article>
+            <article class="qbr-card">
+              <h4><span class="bento-index">02</span> <span data-i18n="qbrTests">Разбор гипотез</span></h4>
+              <dl class="qbr-measures">
+                <div><dt data-i18n="qbrMechanic">Механика</dt><dd data-i18n="qbrMechanicValue">Подарок от порога корзины</dd></div>
+                <div><dt data-i18n="qbrSample">Выборка</dt><dd data-i18n="qbrSampleValue">500 заказов на вариант</dd></div>
+                <div><dt data-i18n="qbrMargin">Маржа на заказ</dt><dd>+4%</dd></div>
+              </dl>
+              <p class="qbr-decision" data-i18n="qbrDecision">Решение: масштабировать на следующий сегмент.</p>
+            </article>
+            <article class="qbr-card">
+              <h4><span class="bento-index">03</span> <span data-i18n="qbrQa">Data QA и риски</span></h4>
+              <dl class="qbr-measures">
+                <div><dt data-i18n="qbrClosed">Закрыто</dt><dd data-i18n="qbrClosedValue">Устранены дубли платежных событий.</dd></div>
+                <div><dt data-i18n="qbrBlocker">Блокер клиента</dt><dd data-i18n="qbrBlockerValue">Ожидаем доступ к выгрузке доставок для сверки статусов.</dd></div>
+              </dl>
+            </article>
+            <article class="qbr-card">
+              <h4><span class="bento-index">04</span> <span data-i18n="qbrPlan">План на Q+1</span></h4>
+              <ul class="qbr-plan">
+                <li data-i18n="qbrPlan1">Сверить доставки · высокое влияние · неделя 1 · клиент и аналитик</li>
+                <li data-i18n="qbrPlan2">Проверить бюджет каналов · высокое · неделя 2 · маркетинг</li>
+                <li data-i18n="qbrPlan3">Запустить подарок на новом сегменте · среднее · неделя 3 · PM и CRM</li>
+                <li data-i18n="qbrPlan4">Настроить контроль дублей · среднее · неделя 4 · интеграция</li>
+              </ul>
+            </article>
           </div>
-        </div>
-        <p class="diagram-hint" data-i18n="diagramHint">На узком экране схему можно прокрутить по горизонтали.</p>
-        <ul class="process-badges">
-          <li data-i18n="touches">Касания клиента: 5 -> 2</li><li data-i18n="singleOwner">Единый владелец интеграции</li><li data-i18n="paymentGate">Гейт оплаты и SLA 48ч</li>
-        </ul>
-      </div>
-      <div id="qbr" role="tabpanel" aria-labelledby="tab-qbr" hidden>
-        <h3 class="qbr-title" data-i18n="qbrTitle">Шаблон клиентского QBR-отчета</h3>
-        <p class="lead" data-i18n="qbrIntro">Пример структуры квартальной встречи. Показатели и сценарии ниже - демо-данные.</p>
-        <div class="qbr-grid">
-          <article class="qbr-card">
-            <h4><span class="bento-index">01</span> <span data-i18n="qbrKpi">Итоги квартала (KPI План/Факт)</span></h4>
-            <dl class="qbr-measures">
-              <div><dt data-i18n="qbrRevenue">Выручка</dt><dd data-i18n="qbrRevenueValue">100% / 96% плана</dd></div>
-              <div><dt data-i18n="qbrChannels">Динамика каналов</dt><dd data-i18n="qbrChannelValue">CRM +12% к прошлому кварталу</dd></div>
-              <div><dt data-i18n="qbrBasket">Средний чек</dt><dd data-i18n="qbrBasketValue">+3% / +4% к прошлому кварталу</dd></div>
-            </dl>
-            <p class="qbr-decision"><span data-i18n="qbrVerdictLine1">Выручка ниже плана на 4%.</span><br><span data-i18n="qbrVerdictLine2">Пересмотреть вклад платных каналов.</span></p>
-          </article>
-          <article class="qbr-card">
-            <h4><span class="bento-index">02</span> <span data-i18n="qbrTests">Разбор гипотез</span></h4>
-            <dl class="qbr-measures">
-              <div><dt data-i18n="qbrMechanic">Механика</dt><dd data-i18n="qbrMechanicValue">Подарок от порога корзины</dd></div>
-              <div><dt data-i18n="qbrSample">Выборка</dt><dd data-i18n="qbrSampleValue">500 заказов на вариант</dd></div>
-              <div><dt data-i18n="qbrMargin">Маржа на заказ</dt><dd>+4%</dd></div>
-            </dl>
-            <p class="qbr-decision" data-i18n="qbrDecision">Решение: масштабировать на следующий сегмент.</p>
-          </article>
-          <article class="qbr-card">
-            <h4><span class="bento-index">03</span> <span data-i18n="qbrQa">Data QA и риски</span></h4>
-            <dl class="qbr-measures">
-              <div><dt data-i18n="qbrClosed">Закрыто</dt><dd data-i18n="qbrClosedValue">Устранены дубли платежных событий.</dd></div>
-              <div><dt data-i18n="qbrBlocker">Блокер клиента</dt><dd data-i18n="qbrBlockerValue">Ожидаем доступ к выгрузке доставок для сверки статусов.</dd></div>
-            </dl>
-          </article>
-          <article class="qbr-card">
-            <h4><span class="bento-index">04</span> <span data-i18n="qbrPlan">План на Q+1</span></h4>
-            <ul class="qbr-plan">
-              <li data-i18n="qbrPlan1">Сверить доставки · высокое влияние · неделя 1 · клиент и аналитик</li>
-              <li data-i18n="qbrPlan2">Проверить бюджет каналов · высокое · неделя 2 · маркетинг</li>
-              <li data-i18n="qbrPlan3">Запустить подарок на новом сегменте · среднее · неделя 3 · PM и CRM</li>
-              <li data-i18n="qbrPlan4">Настроить контроль дублей · среднее · неделя 4 · интеграция</li>
-            </ul>
-          </article>
         </div>
       </div>
     </section>
@@ -331,8 +351,10 @@ ORDER BY clean_revenue DESC;</code></pre>
     </div>
     <div class="calc-layout">
       <form id="calc-form">
-        <p class="calc-note" id="unit-note" data-i18n="bundleNote" hidden>В механике 1+1 цена, себестоимость и объем указаны для целого комплекта.</p>
-        <p class="calc-note" id="gift-note" data-i18n="giftNote" hidden>Порог используется как расчетная сумма корзины в акции. Доля себестоимости остается прежней. В каждую корзину от порога включен один подарок по себестоимости.</p>
+        <div class="calc-notes">
+          <p class="calc-note" id="unit-note" data-i18n="bundleNote" hidden>В механике 1+1 цена, себестоимость и объем указаны для целого комплекта.</p>
+          <p class="calc-note" id="gift-note" data-i18n="giftNote" hidden>Порог используется как расчетная сумма корзины в акции. Доля себестоимости остается прежней. В каждую корзину от порога включен один подарок по себестоимости.</p>
+        </div>
         <div class="control">
           <label for="base"><span id="base-label" data-i18n="basePrice">Базовая цена</span> <span class="unit">₽</span></label>
           <input id="base" type="number" min="0.01" max="1000000000" step="0.01" value="120" inputmode="decimal" required>
@@ -366,7 +388,9 @@ ORDER BY clean_revenue DESC;</code></pre>
         </div>
       </form>
       <div class="calc-result" aria-live="polite" aria-atomic="true">
-        <h3 data-i18n="resultTitle">Точка безубыточности</h3><strong id="target"></strong><p id="growth"></p>
+        <div class="calc-summary">
+          <h3 data-i18n="resultTitle">Точка безубыточности</h3><strong id="target"></strong><p id="growth"></p>
+        </div>
         <dl>
           <div><dt data-i18n="foodShare">Доля себестоимости до / в акции</dt><dd id="food"></dd></div>
           <div><dt id="margin-label" data-i18n="marginBeforeAfter">Валовая маржа с единицы до / в акции</dt><dd id="profits"></dd></div>
@@ -382,31 +406,97 @@ ORDER BY clean_revenue DESC;</code></pre>
     <h2 id="cases-title"><span data-i18n="casesTitle">Кейсы в цифрах</span></h2>
     <div class="case-split">
       <div class="case-tabs" role="tablist" aria-label="Кейсы" data-i18n-label="caseTabs" aria-orientation="vertical">
-        <button id="tab-0" role="tab" aria-controls="case-0" aria-selected="true" tabindex="0"><span class="case-num">01</span><span><b><span data-i18n="casePapa">Papa Johns Узбекистан</span></b><small><span data-i18n="casePapaTag">Сеть 30+ ресторанов</span></small></span><span aria-hidden="true">↗</span></button>
-        <button id="tab-1" role="tab" aria-controls="case-1" aria-selected="false" tabindex="-1"><span class="case-num">02</span><span><b><span data-i18n="caseGuests">Гости Групп</span></b><small><span data-i18n="caseGuestsTag">Лояльность и фудкост (Сочи)</span></small></span><span aria-hidden="true">↗</span></button>
-        <button id="tab-2" role="tab" aria-controls="case-2" aria-selected="false" tabindex="-1"><span class="case-num">03</span><span><b><span data-i18n="caseEtra">ЭТРА</span></b><small><span data-i18n="caseEtraTag">E-commerce и аудит учета</span></small></span><span aria-hidden="true">↗</span></button>
-        <button id="tab-3" role="tab" aria-controls="case-3" aria-selected="false" tabindex="-1"><span class="case-num">04</span><span><b><span data-i18n="caseVoyage">Вояж и PRO.Хинкали</span></b><small><span data-i18n="caseVoyageTag">Локальный маркетинг и процессы</span></small></span><span aria-hidden="true">↗</span></button>
+        <button type="button" id="tab-0" role="tab" aria-controls="case-0" aria-selected="true" tabindex="0">
+          <span class="case-num">01</span><span><b data-i18n="caseEtra">ЭТРА</b><small data-i18n="caseEtraTag">E-commerce / EdTech</small></span><span aria-hidden="true">↗</span>
+        </button>
+        <button type="button" id="tab-1" role="tab" aria-controls="case-1" aria-selected="false" tabindex="-1">
+          <span class="case-num">02</span><span><b data-i18n="casePapa">Papa Johns</b><small data-i18n="casePapaTag">Сеть 30+ точек</small></span><span aria-hidden="true">↗</span>
+        </button>
+        <button type="button" id="tab-2" role="tab" aria-controls="case-2" aria-selected="false" tabindex="-1">
+          <span class="case-num">03</span><span><b>Family Garden</b><small data-i18n="familyBrands">PRO.Хинкали / Lali</small></span><span aria-hidden="true">↗</span>
+        </button>
+        <button type="button" id="tab-3" role="tab" aria-controls="case-3" aria-selected="false" tabindex="-1">
+          <span class="case-num">04</span><span><b data-i18n="caseVoyage">ООО "Вояж"</b><small data-i18n="caseVoyageTag">Процессы и отчетность</small></span><span aria-hidden="true">↗</span>
+        </button>
+        <button type="button" id="tab-4" role="tab" aria-controls="case-4" aria-selected="false" tabindex="-1">
+          <span class="case-num">05</span><span><b data-i18n="caseGuests">"Гости Групп"</b><small data-i18n="caseGuestsTag">CRM, экономика и подрядчики</small></span><span aria-hidden="true">↗</span>
+        </button>
+        <button type="button" id="tab-5" role="tab" aria-controls="case-5" aria-selected="false" tabindex="-1">
+          <span class="case-num">06</span><span><b data-i18n="caseFish">"Рыба мечты"</b><small data-i18n="caseFishTag">CRM-архитектура и удержание</small></span><span aria-hidden="true">↗</span>
+        </button>
       </div>
       <div class="case-records">
         <article id="case-0" class="case-record" role="tabpanel" aria-labelledby="tab-0" tabindex="0">
-          <h3><span data-i18n="casePapa">Papa Johns Узбекистан</span></h3><h4><span data-i18n="caseContext">Контекст</span></h4><p><span data-i18n="papaContext">Удаленная координация маркетинга и аналитики сети пиццерий в команде с локальными маркетологами. В сети более 30 ресторанов, она активно растет.</span></p><h4><span data-i18n="caseWork">Что сделал</span></h4><p><span data-i18n="papaWork">Собрал рейтинг 32 точек по выгрузкам OLAP iiko, переписал скрипт и памятки кассирам, организовал еженедельный контроль с управляющими. Рассчитал BTL-активности в 20 точках по CPA дополнительного чека и просчитывал фудкост промо-комбо.</span></p>
-          <h4><span data-i18n="caseResult">Результат в цифрах</span></h4>
-          <dl class="case-metrics"><div><dt>54%</dt><dd><span data-i18n="papaUpsell">чеков с допродажей на выборке 9 179 чеков за 7 недель. На старте менее 40%, в пике 55-61%.</span></dd></div><div><dt>-81%</dt><dd><span data-i18n="papaBudget">бюджета в CPA-модели BTL при сохранении 57% дополнительных чеков.</span></dd></div><div><dt><span data-i18n="metricCategory">+8,4%</span></dt><dd><span data-i18n="papaSales">продаж категории в первую неделю запуска пиццы 20 см.</span></dd></div></dl>
+          <h3 data-i18n="caseEtra">ЭТРА</h3>
+          <h4 data-i18n="caseContext">Контекст</h4>
+          <p data-i18n="etraContext">Интернет-магазин и онлайн-обучение с базой 27 000 клиентов.</p>
+          <h4 data-i18n="caseWork">Что сделал</h4>
+          <p data-i18n="etraWork">Координировал редизайн магазина на Next.js / Payload CMS и перенос онлайн-курса на поддомен. Спроектировал ступенчатую матрицу подарков по сумме корзины. Разобрал ошибку в отчетах, где продажи считались по статусу "Доставлено" вместо "Оплачено".</p>
+          <h4 data-i18n="caseResult">Результат в цифрах</h4>
+          <dl class="case-metrics">
+            <div><dt data-i18n="metricGap">7-40 раз</dt><dd data-i18n="etraGap">во столько раз ошибка статусов занижала продажи в отчетах.</dd></div>
+          </dl>
         </article>
         <article id="case-1" class="case-record" role="tabpanel" aria-labelledby="tab-1" tabindex="0" hidden>
-          <h3><span data-i18n="caseGuests">Гости Групп</span></h3><h4><span data-i18n="caseContext">Контекст</span></h4><p><span data-i18n="guestsContext">Сочинская ресторанная сеть в Красной Поляне. Задачи включали развитие программы лояльности Remarked и отсечение убыточных промо.</span></p><h4><span data-i18n="caseWork">Что сделал</span></h4><p><span data-i18n="guestsWork">Рассчитал welcome-оффер "2000 баллов за регистрацию", подготовил ТЗ на QR-носители в залах, выявил сбой доставки триггера на 7-й день. Провел аудит акций по фудкосту и валовой прибыли в iiko.</span></p>
-          <h4><span data-i18n="caseResult">Результат в цифрах</span></h4>
-          <dl class="case-metrics"><div><dt><span data-i18n="metricReg">1 765</span></dt><dd><span data-i18n="guestsRegistrations">регистраций за 8 недель. Конверсия в первую покупку 64,6%, средний чек участников выше на 75%.</span></dd></div><div><dt><span data-i18n="metricProfit">3,98 ₽</span></dt><dd><span data-i18n="guestsProfit">расчетной валовой прибыли на 1 ₽ баллов. После размещения QR регистрации выросли на 38%, возврат гостей вырос с 10,9% до 16,6%.</span></dd></div><div><dt>-46%</dt><dd><span data-i18n="guestsLoss">достигало падение валовой прибыли у акций, которые исключили.</span></dd></div></dl>
+          <h3 data-i18n="casePapa">Papa Johns</h3>
+          <h4 data-i18n="caseContext">Контекст</h4>
+          <p data-i18n="papaContext">Координация маркетинга и аналитики для сети из 30+ точек.</p>
+          <h4 data-i18n="caseWork">Что сделал</h4>
+          <p data-i18n="papaWork">Провел аудит чеков и допродаж в OLAP iiko, подготовил памятки для кассиров и ТЗ на наружные носители 6x3 м по брендбуку. Оцифровал неуспешные заказы программы лояльности.</p>
+          <h4 data-i18n="caseResult">Результат в цифрах</h4>
+          <dl class="case-metrics">
+            <div><dt data-i18n="metricUpsell">53,5%</dt><dd data-i18n="papaUpsell">чеков с допродажей на выборке 9 179 чеков. Результат команды.</dd></div>
+            <div><dt data-i18n="metricFailedOrders">12 431</dt><dd data-i18n="papaFailedOrders">неуспешный заказ программы лояльности в цифровом реестре.</dd></div>
+          </dl>
         </article>
         <article id="case-2" class="case-record" role="tabpanel" aria-labelledby="tab-2" tabindex="0" hidden>
-          <h3><span data-i18n="caseEtra">ЭТРА</span></h3><h4><span data-i18n="caseContext">Контекст</span></h4><p><span data-i18n="etraContext">Интернет-магазин и онлайн-обучение с клиентской базой 27 000 человек.</span></p><h4><span data-i18n="caseWork">Что сделал</span></h4><p><span data-i18n="etraWork">Координировал редизайн магазина на Next.js / Payload CMS, перенос курса на поддомен и запуск сезонного проекта. Спроектировал 3-шаговую цепочку брошенной корзины с подарком вместо скидки. Вместе с аналитиком провел аудит выгрузок.</span></p>
-          <h4><span data-i18n="caseResult">Результат в цифрах</span></h4>
-          <dl class="case-metrics"><div><dt><span data-i18n="metricGap">7-40 раз</span></dt><dd><span data-i18n="etraGap">во столько раз ошибка статусов заказов занижала продажи в отчетах. Ошибка исправлена.</span></dd></div><div><dt><span data-i18n="metricPlan">112,9%</span></dt><dd><span data-i18n="etraPlan">выполнение командой плана выручки за сентябрь.</span></dd></div></dl>
+          <h3>Family Garden</h3>
+          <h4 data-i18n="caseContext">Контекст</h4>
+          <p data-i18n="familyContext">Трафик и Data QA для четырех точек PRO.Хинкали и Lali.</p>
+          <h4 data-i18n="caseWork">Что сделал</h4>
+          <p data-i18n="familyWork">Подготовил 4 карты торговых территорий с реестрами B2B-кандидатов. Провел аудит Яндекс Директа за 9 месяцев и выявил ошибку пробития доставки в r-keeper.</p>
+          <h4 data-i18n="caseResult">Результат в цифрах</h4>
+          <dl class="case-metrics">
+            <div><dt data-i18n="metricSearchCpa">919 руб.</dt><dd data-i18n="familyCpa">CPA в Поиске при CR 11,45%. CPA в РСЯ составил 1 764 руб. без НДС.</dd></div>
+            <div><dt data-i18n="metricPositions">58 позиций</dt><dd data-i18n="familyPositions">попадали в чек доставки вместо фактических 16 из-за ошибки в r-keeper.</dd></div>
+          </dl>
         </article>
         <article id="case-3" class="case-record" role="tabpanel" aria-labelledby="tab-3" tabindex="0" hidden>
-          <h3><span data-i18n="caseVoyage">Вояж и PRO.Хинкали</span></h3><h4><span data-i18n="caseContext">Контекст</span></h4><p><span data-i18n="voyageContext">Два ресторана в Ростове Великом (ООО "Вояж") и четыре ресторана PRO.Хинкали / Lali.</span></p><h4><span data-i18n="caseWork">Что сделал</span></h4><p><span data-i18n="voyageWork">Вел дорожную карту на 279 задач и матрицу 70 функций команды. Пересчитал цены 102 блюд по конкурентам и фудкосту, подготовил 4 карты торговых территорий и схему навигации из 7 точек. Провел аудит Яндекс Директа за 9 месяцев и выгрузок r-keeper.</span></p>
-          <h4><span data-i18n="caseResult">Результат в цифрах</span></h4>
-          <dl class="case-metrics"><div><dt>110%</dt><dd><span data-i18n="voyagePlan">выполнение командой сводного плана выручки августа.</span></dd></div><div><dt><span data-i18n="metricCoupon">84 чека</span></dt><dd><span data-i18n="voyageCoupon">с 1 000 купонов. Конверсия выросла с 5% до 8,4%.</span></dd></div><div><dt><span data-i18n="metricCpa">919 ₽</span></dt><dd><span data-i18n="voyageCpa">CPA в Поиске против 1 764 ₽ в РСЯ.</span></dd></div><div><dt><span data-i18n="metricPositions">58 позиций</span></dt><dd><span data-i18n="voyagePositions">вместо 16 показывал чек из-за ошибки в r-keeper.</span></dd></div></dl>
+          <h3 data-i18n="caseVoyage">ООО "Вояж"</h3>
+          <h4 data-i18n="caseContext">Контекст</h4>
+          <p data-i18n="voyageContext">Процессы и отчетность для двух точек, "Финифть" и "Птичий двор".</p>
+          <h4 data-i18n="caseWork">Что сделал</h4>
+          <p data-i18n="voyageWork">Запустил ежедневную и еженедельную отчетность план/факт. Выявил, что выгрузка iiko объединяла два заведения в одной строке, и перевел учет на кассы. Вел дорожную карту из 279 задач, подготовил BTL-флаеры и собрал базу из 60+ объектов размещения.</p>
+          <h4 data-i18n="caseResult">Результат в цифрах</h4>
+          <dl class="case-metrics">
+            <div><dt>~110%</dt><dd data-i18n="voyagePlan">сводного плана августа выполнила команда.</dd></div>
+            <div><dt data-i18n="metricFlyers">до 8,4%</dt><dd data-i18n="voyageFlyers">конверсия BTL-флаеров.</dd></div>
+          </dl>
+        </article>
+        <article id="case-4" class="case-record" role="tabpanel" aria-labelledby="tab-4" tabindex="0" hidden>
+          <h3 data-i18n="caseGuests">"Гости Групп"</h3>
+          <h4 data-i18n="caseContext">Контекст</h4>
+          <p data-i18n="guestsContext">Программа лояльности "2000 баллов", экономика промо и управление внешним подрядчиком.</p>
+          <h4 data-i18n="caseWork">Что сделал</h4>
+          <p data-i18n="guestsWork">Определил экономику программы и отсек убыточные акции по данным iiko. Управлял внешним дизайн-агентством на ребрендинге трех точек, структурировал ТЗ и пакеты правок, контролировал сроки и оплату счетов.</p>
+          <h4 data-i18n="caseResult">Результат в цифрах</h4>
+          <dl class="case-metrics">
+            <div><dt data-i18n="metricReg">1 765</dt><dd data-i18n="guestsRegistrations">регистраций за 8 недель. Конверсия в первую покупку 64,6%, средний чек с программой лояльности выше на 75%.</dd></div>
+            <div><dt data-i18n="metricProfit">3,98 руб.</dt><dd data-i18n="guestsProfit">расчетной валовой прибыли на 1 руб. баллов.</dd></div>
+          </dl>
+        </article>
+        <article id="case-5" class="case-record" role="tabpanel" aria-labelledby="tab-5" tabindex="0" hidden>
+          <h3 data-i18n="caseFish">"Рыба мечты"</h3>
+          <h4 data-i18n="caseContext">Контекст</h4>
+          <p data-i18n="fishContext">CRM-архитектура, реактивация клиентов и экономика гастроужина.</p>
+          <h4 data-i18n="caseWork">Что сделал</h4>
+          <p data-i18n="fishWork">Спроектировал триггерную матрицу от 0 до 4-й покупки и 6-ступенчатую RFM-реактивацию на 30-360 дней. Подготовил персональные QR/UTM для сотрудников и финансовую модель гастроужина.</p>
+          <h4 data-i18n="caseResult">Результат в цифрах</h4>
+          <dl class="case-metrics">
+            <div><dt>41</dt><dd data-i18n="fishTriggers">триггерный CRM-сценарий.</dd></div>
+            <div><dt>18</dt><dd data-i18n="fishStaff">сотрудников с персональными QR-кодами и UTM-метками.</dd></div>
+            <div><dt>31</dt><dd data-i18n="fishDinner">платный гость для окупаемости гастроужина.</dd></div>
+          </dl>
         </article>
       </div>
     </div>
@@ -423,9 +513,9 @@ ORDER BY clean_revenue DESC;</code></pre>
       <div><dt><span data-i18n="skillsEducation">База и языки</span></dt><dd><span data-i18n="skillsEducationValue">Высшее экономическое (ДГТУ), Английский C1</span></dd></div>
     </dl></div>
     <div><h2><span data-i18n="certTitle">Сертификаты 2026</span></h2><ul class="cert-list">
-      <li><a href="assets/certs/yandex-metrika.pdf" target="_blank" rel="noopener"><span><span data-i18n="certMetrica">Яндекс Метрика (базовый)</span><small>№ 319624</small></span><b aria-hidden="true">↗</b></a></li>
-      <li><span><span data-i18n="certDirect">Яндекс Директ (базовый)</span><small>№ 318028 · 2026</small></span></li>
-      <li><span><span data-i18n="certGeo">Геоперформанс и Яндекс Бизнес</span><small>№ 317869 · 2026</small></span></li>
+      <li><a href="https://b2b.yandex.ru/adv/expert/certificates?certId=319624&amp;lastname=%D0%9A%D0%BE%D1%80%D0%B5%D0%BF%D0%B0%D0%BD%D0%BE%D0%B2" target="_blank" rel="noopener"><span><span data-i18n="certMetrica">Яндекс Метрика (базовый)</span><small data-i18n="certMetricaMeta">№ 319624 · до 19.11.2027</small></span><b aria-hidden="true">↗</b></a></li>
+      <li><a href="https://b2b.yandex.ru/adv/expert/certificates?certId=318028&amp;lastname=%D0%9A%D0%BE%D1%80%D0%B5%D0%BF%D0%B0%D0%BD%D0%BE%D0%B2" target="_blank" rel="noopener"><span><span data-i18n="certDirect">Яндекс Директ (базовый)</span><small data-i18n="certDirectMeta">№ 318028 · до 27.10.2027</small></span><b aria-hidden="true">↗</b></a></li>
+      <li><a href="https://b2b.yandex.ru/adv/expert/certificates?certId=317869&amp;lastname=%D0%9A%D0%BE%D1%80%D0%B5%D0%BF%D0%B0%D0%BD%D0%BE%D0%B2" target="_blank" rel="noopener"><span><span data-i18n="certGeo">Геоперформанс и Яндекс Бизнес (базовый)</span><small data-i18n="certGeoMeta">№ 317869 · до 23.10.2027</small></span><b aria-hidden="true">↗</b></a></li>
       <li><a href="assets/certs/sql-stepik.pdf" target="_blank" rel="noopener"><span><span data-i18n="certSqlStepik">SQL - Интерактивный тренажер (Stepik / ДВФУ)</span><small><span data-i18n="honors">С отличием</span></small></span><b aria-hidden="true">↗</b></a></li>
       <li><a href="assets/certs/sql-mincifry.pdf" target="_blank" rel="noopener"><span><span data-i18n="certSqlMincifry">SQL - Оценка ИТ-компетенций (Минцифры)</span><small><span data-i18n="basic">Базовый</span></small></span><b aria-hidden="true">↗</b></a></li>
       <li><a href="https://stepik.org/certificate/0aa298a273b7d3f8244e8a07cd663d7ff45f9c26.pdf" target="_blank" rel="noopener"><span><span data-i18n="certMindbox">Mindbox - Программа лояльности (Stepik)</span><small><span data-i18n="honors">С отличием</span></small></span><b aria-hidden="true">↗</b></a></li>
@@ -444,12 +534,18 @@ ORDER BY clean_revenue DESC;</code></pre>
 <button class="back-to-top" type="button" aria-label="Вернуться наверх" data-i18n-label="backToTop" inert>
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5m-5 5 5-5 5 5"/></svg>
 </button>
-<dialog id="lightbox" aria-label="Дашборд аналитики допродаж" data-i18n-label="lightboxLabel">
-  <div class="viewer-head"><strong>BI DataLens</strong><div><button type="button" id="zoom" aria-pressed="false" data-i18n="zoom">Увеличить</button><button type="button" id="close-viewer" aria-label="Закрыть просмотр" data-i18n-label="closeViewer" data-i18n="close">Закрыть</button></div></div>
+<dialog id="lightbox" aria-labelledby="viewer-title">
+  <header class="viewer-head">
+    <h2 id="viewer-title"></h2>
+    <a id="viewer-link" class="bi-action" target="_blank" rel="noopener" data-i18n="openInteractiveDashboard">Открыть интерактивный DataLens</a>
+    <button type="button" id="close-viewer" class="bi-action" aria-label="Закрыть превью" data-i18n-label="closeViewer" autofocus>
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+    </button>
+  </header>
   <div class="image-stage">
     <picture>
-      <source srcset="assets/img/datalens-preview.webp" type="image/webp">
-      <img src="assets/img/datalens-preview.png" alt="Дашборд по четырем ресторанам: выручка, средний чек, доля допродаж и рейтинг кассиров" data-i18n-alt="previewAlt" width="1424" height="1226" loading="lazy" decoding="async">
+      <source type="image/webp">
+      <img alt="" decoding="async">
     </picture>
   </div>
 </dialog>

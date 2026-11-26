@@ -192,28 +192,44 @@ document.addEventListener('portfolio:language', queueNavigation);
 syncNavigation();
 
 const lightbox = document.querySelector('#lightbox');
-const stage = lightbox.querySelector('.image-stage');
-const zoom = document.querySelector('#zoom');
-document.querySelector('#show-dashboard').addEventListener('click', event => {
-  if (!lightbox.showModal || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
-  event.preventDefault();
-  lightbox.showModal();
-  document.querySelector('#close-viewer').focus();
-});
-zoom.addEventListener('click', () => {
-  const zoomed = stage.classList.toggle('zoomed');
-  zoom.setAttribute('aria-pressed', String(zoomed));
-  zoom.textContent = zoomed ? t('fit','Вписать в экран') : t('zoom','Увеличить');
-});
+const viewerTitle = document.querySelector('#viewer-title');
+const viewerLink = document.querySelector('#viewer-link');
+const viewerSource = lightbox.querySelector('source');
+const viewerImage = lightbox.querySelector('img');
+let activeDashboardTitle;
+
+function localizePreview() {
+  viewerTitle.textContent = activeDashboardTitle.textContent;
+  viewerImage.alt = t('dashboardScreenshot','Скриншот дашборда с демо-данными');
+}
+
+for (const button of document.querySelectorAll('[data-preview]')) {
+  button.addEventListener('click', () => {
+    const card = button.closest('.bi-card');
+    activeDashboardTitle = card.querySelector('h4');
+    localizePreview();
+    viewerLink.href = card.querySelector('.bi-actions a').href;
+    if (button.dataset.previewWebp) viewerSource.srcset = button.dataset.previewWebp;
+    else viewerSource.removeAttribute('srcset');
+    viewerImage.src = button.dataset.preview;
+    lightbox.showModal();
+  });
+}
 document.querySelector('#close-viewer').addEventListener('click', () => lightbox.close());
-lightbox.addEventListener('close', () => {
-  stage.classList.remove('zoomed');
-  zoom.setAttribute('aria-pressed', 'false');
-  zoom.textContent = t('zoom','Увеличить');
+document.addEventListener('portfolio:language', () => {
+  if (lightbox.open) localizePreview();
 });
 
-document.addEventListener('portfolio:language', () => {
-  zoom.textContent = stage.classList.contains('zoomed') ? t('fit','Вписать в экран') : t('zoom','Увеличить');
+function onPreviewBackdrop(event) {
+  if (event.target !== lightbox) return false;
+  const {left, right, top, bottom} = lightbox.getBoundingClientRect();
+  return event.clientX < left || event.clientX > right || event.clientY < top || event.clientY > bottom;
+}
+
+let clickedOnBackdrop = false;
+lightbox.addEventListener('pointerdown', event => { clickedOnBackdrop = onPreviewBackdrop(event); });
+lightbox.addEventListener('click', event => {
+  if (clickedOnBackdrop && onPreviewBackdrop(event)) lightbox.close();
 });
 
 for (const list of document.querySelectorAll('[role="tablist"]')) {
@@ -493,7 +509,11 @@ function statMetric(element, format) {
 
 const jelly = new Map(sliders.map(slider => [slider, jellySlider(slider)]));
 const perDay = () => t('perDay','/день');
-const targetMetric = statMetric(result.target, ([target]) => units(Math.round(target)) + perDay());
+const targetMetric = statMetric(result.target, ([target]) => {
+  const count = Math.round(target);
+  const amount = mode === 'set' ? integer.format(count) + '\u00a0' + t('bundleShort','компл.') : units(count);
+  return amount + perDay();
+});
 const percent = value => oneDecimal.format(value) + '%';
 const costMetric = statMetric(result.food, ([normal, promo]) =>
   percent(normal) + ' → ' + (promo === undefined ? '-' : percent(promo)));
