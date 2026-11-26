@@ -72,12 +72,12 @@ h2 { font-size:clamp(1.38rem,2.55vw,2.45rem); letter-spacing:-.05em; text-transf
 .header-actions,.buttons,.presets { display:flex; align-items:center; flex-wrap:wrap; }
 
 .header-actions { gap:12px; }
-.theme-toggle,.menu-toggle,.top-telegram { display:inline-flex; align-items:center; justify-content:center; border:1px solid #506068; border-radius:6px; color:#f2f5f7; background:transparent; }
+.theme-toggle,.menu-toggle { display:inline-flex; align-items:center; justify-content:center; border:1px solid #506068; border-radius:6px; color:#f2f5f7; background:transparent; }
 .theme-toggle { padding:3px; gap:2px; }
 .theme-toggle span { width:25px; height:25px; display:grid; place-content:center; font:1.08rem/1 Arial,sans-serif; border-radius:3px; }
 .theme-toggle span:first-child,:root[data-theme="dark"] .theme-toggle span:last-child { background:#dbe2e6; color:#222b31; }
 :root[data-theme="dark"] .theme-toggle span:first-child { background:transparent; color:#f2f5f7; }
-.top-telegram,.menu-toggle { font-size:.83rem; padding:7px 12px; font-weight:500; }
+.menu-toggle { font-size:.83rem; padding:7px 12px; font-weight:500; }
 .menu-toggle { display:none; }
 .hero-body { display:grid; grid-template-columns:minmax(0,1.55fr) minmax(0,.9fr); gap:clamp(38px,6.5vw,94px); padding:clamp(30px,3.3vw,49px); align-items:center; position:relative; isolation:isolate; }
 .hero-body::before { content:""; position:absolute; inset:0 0 0 45%; z-index:-1; pointer-events:none; background:repeating-linear-gradient(112deg,transparent 0 61px,rgba(171,193,201,.065) 62px,transparent 63px 119px); }
@@ -89,7 +89,7 @@ h1 { font-size:clamp(2.4rem,4.25vw,3.95rem); font-weight:500; letter-spacing:-.0
 .bright { background:#ecf1f3; color:#182024; }
 .bright:hover { background:#fff; }
 .outline { border-color:#526067; }
-.outline:hover,.top-telegram:hover,.menu-toggle:hover { background:#2a353a; }
+.outline:hover,.menu-toggle:hover { background:#2a353a; }
 .facts { list-style:none; border-top:1px solid var(--line-dark); margin-top:28px; padding:13px 0 0; display:flex; flex-wrap:wrap; gap:3px 0; color:#c7d0d5; font-size:.76rem; }
 .facts li:not(:last-child)::after { content:"·"; margin:0 7px; color:#9ca7ae; }
 .portrait-frame { position:relative; padding:9px; border:1px solid #536167; width:100%; max-width:390px; justify-self:end; background-color:#222a2f; }
@@ -567,6 +567,8 @@ body:has(.launch-dialog[open]) { overflow:hidden; }
 .portfolio-content > section, .portfolio-content > footer { scroll-margin-top:70px; }
 .portfolio h2 { text-transform:none; }
 .site-header {
+  --header-control-size:36px;
+  --header-control-gap:7px;
   position:sticky;
   top:10px;
   z-index:8;
@@ -579,16 +581,18 @@ body:has(.launch-dialog[open]) { overflow:hidden; }
   backdrop-filter:blur(16px);
 }
 .site-header .monogram { margin-right:0; font-size:1.48rem; flex:none; }
-.site-header .header-actions { flex-wrap:nowrap; gap:7px; }
-.site-header :is(.theme-toggle,.menu-toggle,.top-telegram) {
-  min-height:36px;
-  border-color:var(--line);
+.site-header .header-actions { flex-wrap:nowrap; gap:var(--header-control-gap); }
+.site-header :is(.theme-toggle,.menu-toggle,.contact-shortcut) {
+  flex:none;
+  width:var(--header-control-size);
+  height:var(--header-control-size);
+  padding:0;
+  border:1px solid var(--line);
   border-radius:9px;
+  background:transparent;
   color:var(--ink);
-  white-space:nowrap;
 }
-.site-header :is(.theme-toggle,.menu-toggle,.top-telegram):hover { background:var(--inset); }
-.site-header .theme-toggle,.site-header .menu-toggle { width:36px; padding:0; }
+.site-header :is(.theme-toggle,.menu-toggle):hover { background:var(--inset); }
 .site-header .theme-toggle span {
   background:transparent;
   color:inherit;
@@ -596,7 +600,46 @@ body:has(.launch-dialog[open]) { overflow:hidden; }
 }
 :root:not([data-theme="dark"]) .site-header .theme-toggle span:first-child,
 :root[data-theme="dark"] .site-header .theme-toggle span:last-child { display:none; }
-.site-header .top-telegram { padding:5px 10px; font-weight:600; }
+.contact-shortcuts { display:flex; gap:var(--header-control-gap); }
+.contact-shortcut {
+  position:relative;
+  display:inline-grid;
+  place-items:center;
+  transition:color .18s ease,border-color .18s ease,background-color .18s ease;
+}
+.site-header .contact-shortcut:is(:hover,:focus-visible) {
+  color:var(--accent);
+  border-color:var(--accent);
+  background:color-mix(in srgb,var(--accent) 10%,var(--surface));
+}
+@media (hover:hover) and (pointer:fine) {
+  .contact-shortcut::after {
+    content:attr(data-contact-hint);
+    position:absolute;
+    top:calc(100% + 7px);
+    right:0;
+    z-index:2;
+    padding:4px 8px;
+    border:1px solid var(--line);
+    border-radius:7px;
+    background:var(--surface);
+    color:var(--ink);
+    box-shadow:0 4px 14px rgb(12 22 28 / .16);
+    font-size:.75rem;
+    font-weight:500;
+    white-space:nowrap;
+    pointer-events:none;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-3px);
+    transition:opacity .16s ease,transform .16s ease,visibility .16s;
+  }
+  .contact-shortcut:is(:hover,:focus-visible)::after {
+    opacity:1;
+    visibility:visible;
+    transform:none;
+  }
+}
 
 .pill-group {
   position:relative;
@@ -912,13 +955,16 @@ a.bi-action:hover { background:color-mix(in srgb,var(--accent) 16%,var(--surface
   .qbr-measures div { grid-template-columns:minmax(0,1fr) minmax(0,1.5fr); }
   .code-head { padding-inline:10px; }
   .sql-pre { padding:11px 10px; font-size:.78rem; }
-  .site-header .header-actions { gap:5px; }
+  .site-header { --header-control-gap:5px; }
 }
 @media (max-width:365px) {
+  .site-header { --header-control-size:30px; --header-control-gap:3px; gap:5px; padding-inline:8px; }
+  .site-header .monogram { font-size:1.25rem; }
+  .site-header .language-switch .pill-option { min-height:24px; padding-inline:4px; }
   .portfolio .hero-body { padding-inline:16px; }
 }
 @media (prefers-reduced-motion:reduce) {
-  a.bento-card,.artifact-link,.bi-action { transition:none; }
+  a.bento-card,.artifact-link,.bi-action,.contact-shortcut,.contact-shortcut::after { transition:none; }
   #lightbox[open],#lightbox::backdrop { animation:none; }
 }
 
