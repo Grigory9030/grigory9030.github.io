@@ -23,9 +23,9 @@
   <meta name="twitter:description" data-i18n-content="pageDescription" content="Портфолио с двумя дашбордами Yandex DataLens, SQL-аудитом данных, онбордингом B2B, клиентским QBR, калькулятором SKU и пультом запусков.">
   <meta name="twitter:image" content="https://grigory9030.github.io/assets/img/og-preview.png">
   <script src="theme.js?v=2"></script>
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
   <script src="motion.js" defer></script>
-  <script src="i18n.js?v=4" defer></script>
+  <script src="i18n.js?v=5" defer></script>
   <script src="diagrams.js?v=1" defer></script>
   <script src="app.js?v=4" defer></script>
 </head>
@@ -101,6 +101,31 @@
     <section class="panel pad" id="tools" aria-labelledby="tools-title">
       <h2 id="tools-title" data-i18n="artifactsTitle">Витрина артефактов</h2>
       <div class="bento-grid">
+        <article class="bento-card meeting-card" id="meeting-assistant" aria-labelledby="meeting-assistant-title">
+          <h3 id="meeting-assistant-title" data-i18n="meetingTitle">Telegram-бот для транскрибации и разбора созвонов (RAG, LLMOps, Side-by-side)</h3>
+          <div class="meeting-grid">
+            <div class="meeting-overview">
+              <p data-i18n="meetingWorkflow">Groq Whisper превращает запись в текст. Экстрактор собирает разбор, верификатор сверяет факты по цитатам и присваивает статусы проверки.</p>
+              <p data-i18n="meetingRag">Локальный RAG использует TF-IDF и косинусное расстояние. Бот берет контекст из Google Docs и записывает задачи в Google Sheets после подтверждения пользователя (Human-in-the-loop).</p>
+              <p data-i18n="meetingOps">Langfuse v4 фиксирует этапы разбора и версии промптов по хэшам. При лимитах API запросы повторяются автоматически.</p>
+              <p class="artifact-detail" data-i18n="meetingStack">Python 3.11+ · aiogram 3 · OpenAI-совместимый клиент · 23 теста на pytest</p>
+              <div class="meeting-actions">
+                <a class="bi-action" href="https://github.com/Grigory9030/meeting-assistant-bot" target="_blank" rel="noopener" data-i18n="meetingCode">Код и README на GitHub</a>
+                <a class="bi-action" href="https://github.com/Grigory9030/meeting-assistant-bot/blob/main/eval/results.md" target="_blank" rel="noopener" data-i18n="meetingReport">Отчет Side-by-side</a>
+              </div>
+            </div>
+            <section class="meeting-results" aria-labelledby="meeting-eval-title">
+              <h4 class="artifact-kind" id="meeting-eval-title" data-i18n="meetingEvalTitle">Side-by-side оценка</h4>
+              <p class="meeting-stat"><strong>100%</strong> <span data-i18n="meetingRuns">валидного JSON в 60 прогонах на 15 кейсах, включая 5 провокационных.</span></p>
+              <p data-i18n="meetingPrompts">На GPT-OSS-120B доля додумок по разметке снизилась с 4,6% на v1_baseline до 2,9% на v2_pipeline.</p>
+              <p class="artifact-kind" data-i18n="meetingModels">Отдельное сравнение моделей на v2_pipeline</p>
+              <dl class="meeting-models">
+                <div><dt>GPT-OSS-120B</dt><dd data-i18n="meetingGptScore">0,0% додумок · 93,3% полноты задач · 28,56 с в среднем</dd></div>
+                <div><dt>Qwen 3.8 27B</dt><dd data-i18n="meetingQwenScore">2,9% додумок · 100% полноты задач · 22,03 с в среднем</dd></div>
+              </dl>
+            </section>
+          </div>
+        </article>
         <article class="bento-card bento-bi">
           <h3><span class="bento-index">01</span> BI DataLens (x2)</h3>
           <div class="bi-cards">
